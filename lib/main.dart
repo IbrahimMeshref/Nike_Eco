@@ -5,6 +5,8 @@ import 'package:nike_eco/screen/onbording/page2.dart';
 import 'package:nike_eco/screen/onbording/page3.dart';
 import 'package:nike_eco/screen/splach.dart';
 
+import 'screen/home/homescreen.dart';
+
 void main() {
   runApp(const MyApp());
 }
