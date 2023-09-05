@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nike_eco/screen/onbording/onbording.dart';
 
-import 'onbording/page1.dart';
+import '../onbording/page1.dart';
 class SplachScreen extends StatefulWidget {
   const SplachScreen({Key? key}) : super(key: key);
 
