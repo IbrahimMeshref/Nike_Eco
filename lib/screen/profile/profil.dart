@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nike_eco/screen/diohelper/urlapi.dart';
 import '../const.dart';
 
 class Profile extends StatefulWidget {
@@ -68,7 +69,7 @@ class _ProfileState extends State<Profile> {
                 enabled: false,
                 style: TextStyle(fontSize: 15),
                 decoration: InputDecoration(
-                  hintText: ' Ibrahim Meshref',
+                  hintText: ApiUrl.pro[0]['name'],
                   filled: true,
                   fillColor: Colors.grey[100],
                   contentPadding: EdgeInsets.symmetric(vertical: 16),
@@ -90,7 +91,7 @@ class _ProfileState extends State<Profile> {
                 enabled: false,
                 style: TextStyle(fontSize: 15),
                 decoration: InputDecoration(
-                  hintText: ' ibrahimmohamedmeshref@gmail.com',
+                  hintText:  ApiUrl.pro[0]['email'],
                   filled: true,
                   fillColor: Colors.grey[100],
                   contentPadding: EdgeInsets.symmetric(vertical: 16),
@@ -112,7 +113,7 @@ class _ProfileState extends State<Profile> {
                 enabled: false,
                 style: TextStyle(fontSize: 15),
                 decoration: InputDecoration(
-                  hintText: ' 01096113327',
+                  hintText:ApiUrl.pro[0]['phone'],
                   filled: true,
                   fillColor: Colors.grey[100],
                   contentPadding: EdgeInsets.symmetric(vertical: 16),

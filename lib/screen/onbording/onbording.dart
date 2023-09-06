@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 import '../home/homescreen.dart';
+import '../login/login_screen.dart';
 import 'contentonbording.dart';
 class Onbording extends StatefulWidget {
   const Onbording({Key? key}) : super(key: key);
@@ -229,7 +230,7 @@ class _OnbordingState extends State<Onbording> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (_) => HomeScreen(),
+                                builder: (_) => LoginScreen(),
                               ),
                             );
                           }

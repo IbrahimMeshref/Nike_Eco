@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:nike_eco/screen/home/homescreen.dart';
 import 'package:nike_eco/screen/onbording/onbording.dart';
 
+import '../dblocallog/hivo.dart';
 import '../onbording/page1.dart';
 class SplachScreen extends StatefulWidget {
   const SplachScreen({Key? key}) : super(key: key);
 
   @override
   State<SplachScreen> createState() => _SplachScreenState();
+  
 }
+
 
 class _SplachScreenState extends State<SplachScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    Future.delayed(Duration(seconds:1),).then((value) => {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Onbording())),
+    Future.delayed(Duration(seconds:2),).then((value) => {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>Storagedata.gettoken().isEmpty? Onbording():HomeScreen())),
+
     });
     super.initState();
   }
