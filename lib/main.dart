@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           create: (context) => SignUpCubit(),
         ),
         BlocProvider(
-          create: (context) => ProfileCubit()..profile(),
+          create: (context) => ProfileCubit(),
         ),
       ],
       child: GetMaterialApp(

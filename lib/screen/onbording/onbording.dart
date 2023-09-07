@@ -48,13 +48,13 @@ class _OnbordingState extends State<Onbording> {
                    child: Container(
                      child: Image.asset('assets/images/onbording/page1name.png'),
                      width: width*0.3,
-                     margin: EdgeInsets.only(top: height*0.28,left:0),
+                     margin: EdgeInsets.only(top: height*0.24,left:0),
                    ),
                  ),
                  Center(
                    child: Container(
                        width:width*0.5,
-                       margin: EdgeInsets.only(top: height*0.18,left: 0),
+                       margin: EdgeInsets.only(top: height*0.18,left: width*0.02),
                        child:Image.asset('assets/images/onbording/Wellcome.png')
                    ),
                  ),

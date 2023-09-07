@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nike_eco/screen/login/cubit/login_cubit.dart';
+import '../profile/cubit/profile_cubit.dart';
 import '../signup/signup.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
   _LoginScreenState createState() => _LoginScreenState();
+
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
   bool _obscureText = true;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   @override
+
+  @override
   Widget build(BuildContext context) {
+
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar:AppBar(
@@ -139,6 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: () {
                     context.read<LoginCubit>().login(mail: _emailController.text, password: _passwordController.text);
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Colors.blue,

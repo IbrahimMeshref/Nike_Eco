@@ -55,13 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Color iconColor = Colors.grey;
 @override
-  void initState() {
-    // TODO: implement initState
-  setState(() {
 
-  });
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -501,7 +495,7 @@ class _HomeScreenState extends State<HomeScreen> {
   builder: (context, state) {
     return IconButton(
     icon: const Icon(Icons.menu_outlined,color: Colors.black,),
-    onPressed: () { toggleMenu(); context.read<ProfileCubit>().profile();
+    onPressed: () { toggleMenu();
     setState(() {
 
     });
@@ -627,6 +621,8 @@ Widget buildMenu(BuildContext context) => SingleChildScrollView(
             onTap: () {
               Storagedata.cleartoken();
               Get.offAll(LoginScreen());
+              ApiUrl.pro.clear();
+
             },
             leading: const Icon(Icons.logout, size: 20.0, color: Colors.white),
             title: const Text(
