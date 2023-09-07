@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:nike_eco/screen/diohelper/urlapi.dart';
-import 'package:nike_eco/screen/profile/model/ProfileModel.dart';
+
 
 import '../../dblocallog/hivo.dart';
 import '../../diohelper/diohelper.dart';
+import '../../diohelper/urlapi.dart';
+import '../model/ProfileModel.dart';
 
 part 'profile_state.dart';
 

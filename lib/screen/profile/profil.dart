@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nike_eco/screen/diohelper/urlapi.dart';
 import '../const.dart';
+import '../diohelper/urlapi.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);

@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:nike_eco/screen/helperdio/urlapi.dart';
+
+import '../diohelper/urlapi.dart';
 
 
 class DioHelper {

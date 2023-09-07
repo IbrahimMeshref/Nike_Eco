@@ -2,13 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:nike_eco/screen/diohelper/diohelper.dart';
-import 'package:nike_eco/screen/diohelper/urlapi.dart';
-import 'package:nike_eco/screen/home/homescreen.dart';
-import 'package:nike_eco/screen/login/model/LoginModel.dart';
+
 
 import '../../dblocallog/hivo.dart';
+import '../../diohelper/diohelper.dart';
+import '../../diohelper/urlapi.dart';
+import '../../home/homescreen.dart';
 import '../../profile/model/ProfileModel.dart';
+import '../model/LoginModel.dart';
 
 part 'login_state.dart';
 

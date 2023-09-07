@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nike_eco/screen/login/cubit/login_cubit.dart';
 import '../profile/cubit/profile_cubit.dart';
 import '../signup/signup.dart';
+import 'cubit/login_cubit.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
