@@ -43,7 +43,6 @@ class LoginCubit extends Cubit<LoginState> {
         });
         Get.offAll(HomeScreen());
         emit(LoginSucess());
-
       }
       else{
         Get.snackbar('','',backgroundColor: Colors.red ,colorText: Colors.red
