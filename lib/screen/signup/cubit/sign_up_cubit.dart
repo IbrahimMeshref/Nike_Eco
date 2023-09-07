@@ -55,6 +55,7 @@ class SignUpCubit extends Cubit<SignUpState> {
           ),
 
         );
+        emit(SignUperror());
       }
     }
   catch(e){
