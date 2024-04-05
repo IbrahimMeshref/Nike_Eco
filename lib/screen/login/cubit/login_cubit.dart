@@ -28,7 +28,7 @@ class LoginCubit extends Cubit<LoginState> {
       });
       loginModel=LoginModel.fromJson(response.data);
       if(loginModel.status==true){
-        Storagedata.addtoken(loginModel.data?.token??"");
+        StoragedataLogin.addtoken(loginModel.data?.token??"");
         DioHelper.headers['Authorization']=loginModel.data?.token??"";
         final response2 = await _dioHelper.getData(path: ApiUrl.profile);
         print('66666666666666666666666666666666lllloginnnnnnnn');
@@ -37,15 +37,16 @@ class LoginCubit extends Cubit<LoginState> {
         print(profileModel.data?.phone);
         ApiUrl.pro.clear();
         ApiUrl.pro.add( {
-          'name':profileModel.data!.name.toString(),
-          'email':profileModel.data!.email.toString(),
-          'phone':profileModel.data!.phone.toString(),
+           await 'name':profileModel.data!.name.toString(),
+         await 'email':profileModel.data!.email.toString(),
+         await 'phone':profileModel.data!.phone.toString(),
+         await 'image':profileModel.data!.image.toString(),
         });
         Get.offAll(HomeScreen());
         emit(LoginSucess());
       }
       else{
-        Get.snackbar('','',backgroundColor: Colors.red ,colorText: Colors.red
+        /*Get.snackbar('','',backgroundColor: Colors.red ,colorText: Colors.red
           ,messageText:  Text(loginModel.message??"",style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -60,8 +61,10 @@ class LoginCubit extends Cubit<LoginState> {
            //textAlign: TextAlign.center,
          ),
 
-        );
-        emit(LoginErorr());
+        );*/
+        emit(LoginWrong());
+        ApiUrl.message=loginModel.message??"";
+
       }
 
     }

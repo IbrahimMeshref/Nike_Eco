@@ -39,7 +39,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         emit(SignUpsuccess());
       }
       else{
-        Get.snackbar('','',backgroundColor: Colors.red ,colorText: Colors.red
+        /*Get.snackbar('','',backgroundColor: Colors.red ,colorText: Colors.red
           ,messageText:  Text(signupModel.message??"",style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -54,8 +54,9 @@ class SignUpCubit extends Cubit<SignUpState> {
             //textAlign: TextAlign.center,
           ),
 
-        );
-        emit(SignUperror());
+        );*/
+        emit(SignUpWrong());
+        ApiUrl.messageup=signupModel.message??"";
       }
     }
   catch(e){

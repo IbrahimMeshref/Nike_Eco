@@ -5,6 +5,7 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
@@ -12,6 +13,7 @@ import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 
 import '../cart/mycart.dart';
 import '../const.dart';
+import '../dblocalcart/hivo.dart';
 import '../dblocallog/hivo.dart';
 import '../diohelper/urlapi.dart';
 import '../login/login_screen.dart';
@@ -56,7 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Color iconColor = Colors.grey;
 @override
-
+void initState() {
+  StoragedataCart.getcart();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -333,36 +338,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Icon(CupertinoIcons.heart, color: iconColor),
                       ),
                       CurvedNavigationBarItem(
-                        child: InkWell(
-                          child: Icon(
-                            Icons.shopping_bag_outlined,
-                            color: iconColor,
-                          ),
-                          onTap: () {
-                            Get.to(Carts());
-                          },
+                        child: Icon(
+                          Icons.shopping_bag_outlined,
+                          color: iconColor,
                         ),
                       ),
                       CurvedNavigationBarItem(
                         child: Icon(Icons.notifications_none, color: iconColor),
                       ),
                       CurvedNavigationBarItem(
-                        child: InkWell(
-                          onTap: (){
-                            Get.to((Profile()));
-                          },
-                          child: Icon(
-                            CupertinoIcons.person,
-                            color: iconColor,
-                          ),
+                        child: Icon(
+                          CupertinoIcons.person,
+                          color: iconColor,
                         ),
                       ),
                     ],
                     onTap: (index) {
+                      print(index);
+                      if(index==2)  {  Get.to((Carts()));setState(() {});}
+                      if(index==4) {Get.to((Profile()));setState(() {});}
                       setState(() {
                         iconColor = Color.fromRGBO(13, 110, 253, 1);
-                      });
-                      // Handle button tap
+                      });// Handle button tap
                     },
                   ),
                 ))));
@@ -416,7 +413,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               children: [
                 Text(
-                  price,
+                  '\$${price}',
                   style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
@@ -429,7 +426,30 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: InkWell(
                     onTap:(){
-                      cart.add(json[indexx]);
+                     // StoragedataCart.cart.add(json[indexx]);
+                      bool find=false;
+                      for(int i=0;i<StoragedataCart.cart.length;i++){
+                        if(StoragedataCart.cart[i]["index"]==json[indexx]['index'])
+                        {
+                            find=true;
+                        }
+                      }
+                      if(find==false)
+                      {
+                        StoragedataCart.addcart(text: json[indexx]);
+                        //print(json[indexx]);
+                        Fluttertoast.showToast(msg: "Add Successful",
+                          backgroundColor: Colors.blue,
+                          fontSize: 17,
+
+                        );
+                      }else{
+                        Fluttertoast.showToast(msg: "Already in Cart",
+                          backgroundColor: Colors.blue,
+                          fontSize: 17,
+
+                        );
+                      }
                     },
                     child: Container(
                       child: Icon(
@@ -466,67 +486,81 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-        backgroundColor: Color.fromRGBO(247, 247, 247, 1),
-        bottomOpacity: 0.0,
-        elevation: 0.0,
-        centerTitle: true,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 43),
-                child: Image.asset(
-                  'assets/images/Highlight_05.png',
-                  width: 18,
-                  height: 19,
-                ),
-              ),
-            Text(
-              "Explore",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 44,
-                  color: Color.fromRGBO(43, 43, 43, 1)),
-            ),
-          ],
-        ),
-        leading: BlocBuilder<ProfileCubit, ProfileState>(
-  builder: (context, state) {
-    return IconButton(
-    icon: const Icon(Icons.menu_outlined,color: Colors.black,),
-    onPressed: () { toggleMenu();
-    setState(() {
+  PreferredSize buildAppBar() {
+    return PreferredSize(
 
-    });
-    }
-    );
+      preferredSize: Size.fromHeight(60.0),
+      child: AppBar(
+          backgroundColor: Color.fromRGBO(247, 247, 247, 1),
+          bottomOpacity: 0.0,
+          elevation: 0.0,
+          centerTitle: true,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0,0, 30),
+                  child: Image.asset(
+                    'assets/images/Highlight_05.png',
+                    width: 20,
+                    height: 19,
+                  ),
+                ),
+              Column(
+                children: [
+                  SizedBox(height: 10,),
+                  Text(
+                    "Explore",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 44,
+                        color: Color.fromRGBO(43, 43, 43, 1)),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          leading: BlocBuilder<ProfileCubit, ProfileState>(
+  builder: (context, state) {
+      return InkWell(
+      child:  CircleAvatar(
+       radius:29 ,
+        backgroundColor: Colors.transparent,
+        child: Image.asset('assets/images/Hamburger.png',
+        ),
+      ),
+      onTap: () { toggleMenu();
+      setState(() {
+
+      });
+      }
+      );
   },
 ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-            child: InkWell(
-              onTap: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => Carts(),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+              child: InkWell(
+                onTap: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => Carts(),
+                    ),
+                  );
+                },
+                child: CircleAvatar(
+                  child: Image.asset(
+                    'assets/images/bag-2.png',
+                    width: 44,
+                    height: 44,
                   ),
-                );
-              },
-              child: CircleAvatar(
-                child: Image.asset(
-                  'assets/images/bag-2.png',
-                  width: 44,
-                  height: 44,
+                  backgroundColor: Color.fromRGBO(255, 255, 255, 1),
                 ),
-                backgroundColor: Color.fromRGBO(255, 255, 255, 1),
               ),
             ),
-          ),
-        ]);
+          ]),
+    );
   }
 }
 
@@ -574,12 +608,13 @@ Widget buildMenu(BuildContext context) => SingleChildScrollView(
           ),
           ListTile(
             onTap: () {
-              Navigator.pushReplacement(
+             /* Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (_) => Carts(),
                 ),
-              );
+              );*/
+              Get.to(Carts());
             },
             leading: const Icon(Icons.shopping_cart,
                 size: 30.0, color: Colors.white),
@@ -620,7 +655,7 @@ Widget buildMenu(BuildContext context) => SingleChildScrollView(
           ),
           ListTile(
             onTap: () {
-              Storagedata.cleartoken();
+              StoragedataLogin.cleartoken();
               Get.offAll(LoginScreen());
               ApiUrl.pro.clear();
 

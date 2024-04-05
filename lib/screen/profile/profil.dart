@@ -17,46 +17,38 @@ class _ProfileState extends State<Profile> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
         backgroundColor: Colors.white,
+       appBar:AppBar(
+         backgroundColor: Colors.white,
+          bottomOpacity: 0.0,
+          elevation: 0.0,
+          centerTitle: true,
+          title: Text("Profile",style:TextStyle(fontSize: 19,color:Colors.black),),
+          leading: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 0, 0, 0),
+              child:InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                  setState(() {});
+                },
+                child: CircleAvatar
+                  (child: Icon( Icons.arrow_back_ios_outlined,color: Color(0xff303030),),
+                  backgroundColor: Color(0xffF7F7F9),),
+
+              )
+          ),
+        ),
         body: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(19.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                      setState(() {});
-                    },
-                    child: CircleAvatar(
-                      radius: 25,
-                      child: Icon(
-                        Icons.arrow_back_ios_outlined,
-                        color: Color(0xff2B2B2B),
-                      ),
-                      backgroundColor: Color(0xffF7F7F9),
-                    ),
-                  ),
-                  SizedBox(
-                    width: width * 0.25,
-                  ),
-                  Text(
-                    'Profile',
-                    style: TextStyle(
-                      color: Color(0xff2B2B2B),
-                      fontSize: 20,
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(
                 height: height * 0.05,
               ),
-              Center(
-                  child: CircleAvatar(
+               Center(
+                  child: CircleAvatar (
                 radius: 60,
-                backgroundImage: NetworkImage(picture1),
+                 backgroundImage: NetworkImage( picture1),
               )),
               SizedBox(
                 height: height * 0.05,

@@ -23,11 +23,11 @@ class _SplachScreenState extends State<SplachScreen> {
     Future.delayed(Duration(seconds:4),).then((value) => {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>
 
-    Storagedata.gettoken().isEmpty?
+    StoragedataLogin.gettoken().isEmpty?
         Onbording():HomeScreen())),
 
     });
-    if(Storagedata.gettoken().isNotEmpty) context.read<ProfileCubit>().profile();
+    if(StoragedataLogin.gettoken().isNotEmpty) context.read<ProfileCubit>().profile();
     super.initState();
   }
   @override

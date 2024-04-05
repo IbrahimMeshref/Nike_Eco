@@ -30,7 +30,7 @@ class _OnbordingState extends State<Onbording> {
   Widget build(BuildContext context) {
 
      double width = MediaQuery.of(context).size.width;
-     double height = MediaQuery.of(context).size.height;
+     late double  height = MediaQuery.of(context).size.height ;
      List<Widget>contents=[
        Container(
          child: Column(
@@ -38,24 +38,37 @@ class _OnbordingState extends State<Onbording> {
            children: [
              Stack(
                children: [
-                 Container(
-                   child: Image.asset('assets/images/onbording/Highlight1.png'),
-                   width: width*0.08,
-                   margin: EdgeInsets.only(top: height*0.15,left:width*0.19),
+                 Column(
+                   children: [
+                     SizedBox(width: width*0.45,height: height*0.14,),
+                     Container(
+                       child: Image.asset('assets/images/onbording/Highlight1.png',width: width*0.07,height: height*0.07,),
 
+                     ),
+                   ],
                  ),
                  Center(
-                   child: Container(
-                     child: Image.asset('assets/images/onbording/page1name.png'),
-                     width: width*0.3,
-                     margin: EdgeInsets.only(top: height*0.24,left:0),
+                   child: Column(
+                     children: [
+                       SizedBox(height: height*0.07,),
+                       Container(
+                         child: Image.asset('assets/images/onbording/page1name.png',width: width*0.37,height: height*0.37,),
+                         //width: width*0.3,
+                         //margin: EdgeInsets.only(top: height*0.24),
+                       ),
+                     ],
                    ),
                  ),
                  Center(
-                   child: Container(
-                       width:width*0.5,
-                       margin: EdgeInsets.only(top: height*0.18,left: width*0.02),
-                       child:Image.asset('assets/images/onbording/Wellcome.png')
+                   child: Column(
+                     children: [
+                       Padding(padding: EdgeInsets.only(bottom: height-height)),
+                       Container(
+                           //width:width*0.5,
+                           //margin: EdgeInsets.only(top: height*0.18,left: width*0.02),
+                           child:Image.asset('assets/images/onbording/Wellcome.png',)
+                       ),
+                     ],
                    ),
                  ),
                  Container(
@@ -202,96 +215,106 @@ class _OnbordingState extends State<Onbording> {
 
     return Scaffold(
       backgroundColor: Color(0xFF0995dc),
-      body:  Stack(
-        //crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            child: Image.asset('assets/images/onbording/watermark.png'),
-            width: width,
-            margin: EdgeInsets.only(top: height*0.53,left: 0),
-          ),
-          //SizedBox(height: 50,),
-          Center(
-            child: Container(
-              height: height*0.067,
-              width: width*0.9,
-              margin: EdgeInsets.only(top: height*0.9),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(22),
-                color: Color(0xD4E0EAEE),
+      body:  SingleChildScrollView(
+        child: Stack(
+            //crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              Container(
+                 // margin: EdgeInsets.only(top: height*0.53),
+                  child: Column(
+                    children: [
+                      SizedBox(height: height*0.53,),
+                      Image.asset('assets/images/onbording/watermark.png'),
+                    ],
+                  )
               ),
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        setState(() {
-                          if(currentIndex+1==contents.length) {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => LoginScreen(),
+              //  width: height,
+               // padding: EdgeInsets.only(top: height*0.53),
+
+              //SizedBox(height: 50,),
+              Center(
+                child: Container(
+                  height: height*0.067,
+                  width: width*0.9,
+                  margin: EdgeInsets.only(top: height*0.9),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(22),
+                    color: Color(0xD4E0EAEE),
+                  ),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              if(currentIndex+1==contents.length) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => LoginScreen(),
+                                  ),
+                                );
+                              }
+                              _controller?.nextPage(duration: Duration(milliseconds: 100), curve: Curves.bounceIn);
+
+                            });
+                          },
+                          child:Container(
+                              height: height*0.067,
+                              width: width*0.9,
+                              //margin: EdgeInsets.only(top: height*0.9),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(22),
+                                color: Color(0xD4E0EAEE),
                               ),
-                            );
-                          }
-                          _controller?.nextPage(duration: Duration(milliseconds: 100), curve: Curves.bounceIn);
-
-                        });
-                      },
-                      child:Container(
-                          height: height*0.067,
-                          width: width*0.9,
-                          //margin: EdgeInsets.only(top: height*0.9),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(22),
-                            color: Color(0xD4E0EAEE),
+                              child:Center(
+                                child: Text(currentIndex!=contents.length-1?'Next':'Get Started',style: TextStyle(
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                ),
+                              )
                           ),
-                          child:Center(
-                            child: Text(currentIndex!=contents.length-1?'Next':'Get Started',style: TextStyle(
-                              fontSize: 19,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            ),
-                          )
-                      ),
-                    ),
-                  ]
-              ),
-            ),
-          ),
-          Container(
-          height: height*0.9,
-
-            child: PageView.builder(
-              controller: _controller,
-              itemCount:contents.length,
-              onPageChanged: (int index) { currentIndex = index;
-                setState(() {
-                });
-              },
-              itemBuilder: (context,index)
-              {
-               // index=indexx;
-                //indexx++;
-               // index=indexx;
-                return contents[index];
-              }
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: height*0.80,left: width*0.4),
-            child: InkWell(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: List.generate(
-                  contents.length,
-                      (index) => buildborder(index, context),
+                        ),
+                      ]
+                  ),
                 ),
-
               ),
-            ),
+              Container(
+              height: height*0.9,
+
+                child: PageView.builder(
+                  controller: _controller,
+                  itemCount:contents.length,
+                  onPageChanged: (int index) { currentIndex = index;
+                    setState(() {
+                    });
+                  },
+                  itemBuilder: (context,index)
+                  {
+                   // index=indexx;
+                    //indexx++;
+                   // index=indexx;
+                    return contents[index];
+                  }
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: height*0.80,left: width*0.4),
+                child: InkWell(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: List.generate(
+                      contents.length,
+                          (index) => buildborder(index, context),
+                    ),
+
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
       ),
     );
   }

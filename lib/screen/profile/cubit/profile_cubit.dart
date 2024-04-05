@@ -15,7 +15,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileModel profileModel=ProfileModel();
 
   void profile()async{
-    if(Storagedata.gettoken().isNotEmpty){
+    if(StoragedataLogin.gettoken().isNotEmpty){
       final response = await _dioHelper.getData(path: ApiUrl.profile);
       print('66666666666666666666666666666666');
       print(response.data.toString());
