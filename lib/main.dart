@@ -25,6 +25,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   var box = await Hive.openBox(StoragedataLogin.login);
   var box2 = await Hive.openBox(StoragedataCart.cartt);
+  var box3 = await Hive.openBox(StoragedataLogin.fav);
   DioHelper.init();
   runApp(const MyApp());
 }

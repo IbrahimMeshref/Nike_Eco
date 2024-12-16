@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../cart/mycart.dart';
 import '../dblocalcart/hivo.dart';
+import '../dblocallog/hivo.dart';
 import 'LocalDB.dart';
 import 'homescreen.dart';
 class itemScreen extends StatefulWidget {
@@ -44,7 +45,11 @@ class _itemScreenState extends State<itemScreen> {
             child:InkWell(child: CircleAvatar(child: Icon(Icons.arrow_back_ios_outlined,color: Colors.grey,),backgroundColor: Color.fromRGBO(255, 255, 255, 1),),
               onTap: ()
               {
-                Navigator.pop(context);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+
               },
             )
         ),
@@ -97,12 +102,19 @@ class _itemScreenState extends State<itemScreen> {
                               padding: const EdgeInsets.fromLTRB(10, 0, 20, 0),
                               child: Row(
                                 children: [
-                                  InkWell(child: CircleAvatar(child: Icon(CupertinoIcons.heart_fill,color: heartColor,),radius: 30,backgroundColor: Color.fromRGBO(247, 247, 247, 1),),
-                                  onTap: (){
-                                        setState(() {
-                                          heartColor=Colors.red;
-                                        });
-                                  },),
+                                  IconButton(icon: !json[i]["fav"]?Icon(Icons.favorite_border,color: Colors.black,):Icon(Icons.favorite,color: Colors.red,),
+                                    onPressed: () {
+                                      if(json[i]["fav"]){
+                                        StoragedataLogin.addtfav(i,false);
+                                        json[i]["fav"]=false;
+                                      }else{
+                                        StoragedataLogin.addtfav(i,true);
+                                        json[i]["fav"]=true;
+                                      }
+                                      setState(() {
+
+                                      });
+                                    },),
                                   SizedBox(width: width*0.1,),
                                   InkWell(
                                     child: Container(
@@ -134,13 +146,13 @@ class _itemScreenState extends State<itemScreen> {
                                           StoragedataCart.addcart(text: json[currentIndex]);
                                           //print(json[indexx]);
                                           Fluttertoast.showToast(msg: "Add Successful",
-                                            backgroundColor: Colors.blue,
+                                            backgroundColor: Colors.green,
                                             fontSize: 17,
 
                                           );
                                         }else{
                                           Fluttertoast.showToast(msg: "Already in Cart",
-                                            backgroundColor: Colors.blue,
+                                            backgroundColor: Colors.amber,
                                             fontSize: 17,
 
                                           );

@@ -16,6 +16,7 @@ import '../const.dart';
 import '../dblocalcart/hivo.dart';
 import '../dblocallog/hivo.dart';
 import '../diohelper/urlapi.dart';
+import '../fav/fav.dart';
 import '../login/login_screen.dart';
 import '../profile/cubit/profile_cubit.dart';
 import '../profile/model/ProfileModel.dart';
@@ -60,6 +61,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Color iconColor = Colors.grey;
 @override
 void initState() {
+  setState(() {
+
+  });
   context.read<ProfileCubit>().profile();
   StoragedataCart.getcart();
     super.initState();
@@ -97,29 +101,9 @@ void initState() {
                   body: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Container(
-                              child:  TextFormField(
 
-                                  decoration: InputDecoration(
-                                    hintText: 'Looking for Shoes',
-                                    contentPadding: EdgeInsets.all(12),
-                                    suffixIcon:Icon(
-                                             Icons.search,
-                                        color: Colors.grey,
-                                      ),
-                                    focusedBorder: OutlineInputBorder(
-                                     borderSide: BorderSide(color: Colors.grey),
-                                      borderRadius: BorderRadius.circular(8.0),
-
-                                    ),
-                                  ),
-
-                                ),
-
-
-                        ),
                         SizedBox(
-                          height: 24,
+                          height: 40,
                         ),
                         Container(
                           margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
@@ -330,6 +314,7 @@ void initState() {
                   ),
                   bottomNavigationBar: CurvedNavigationBar(
                     backgroundColor: Color.fromRGBO(247, 247, 247, 1),
+
                     items: [
                       CurvedNavigationBarItem(
                         child: Icon(
@@ -358,6 +343,10 @@ void initState() {
                     ],
                     onTap: (index) {
                       print(index);
+                      if(index==1)  {   Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FavouritePage()),
+                      );}
                       if(index==2)  {  Get.to((Carts()));setState(() {});}
                       if(index==4) {Get.to((Profile()));setState(() {});}
                       setState(() {
@@ -382,26 +371,37 @@ void initState() {
         color: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
-                Image.asset(
-                  'assets/images/heart.png',
-                  width: 14,
-                  height: 16,
-                ),
+                IconButton(icon: !json[indexx]["fav"]?Icon(Icons.favorite_border,color: Colors.black,size: 20,):Icon(Icons.favorite,color: Colors.red,size: 20),
+                  onPressed: () {
+                  if(json[indexx]["fav"]){
+                    StoragedataLogin.addtfav(indexx,false);
+                    json[indexx]["fav"]=false;
+                  }else{
+                    StoragedataLogin.addtfav(indexx,true);
+                    json[indexx]["fav"]=true;
+                  }
+                  setState(() {
+
+                  });
+print(StoragedataLogin.getfav(indexx));
+                  },),
               ],
             ),
-            Image.asset(
-              image,
-              width: 130,
-              height: 110,
+            Center(
+              child: Image.asset(
+                image,
+                width: 130,
+                height: 110,
+              ),
             ),
             SizedBox(
-              height: 10,
+              height: 5,
             ),
             Text("BEST SELLER",
                 style: TextStyle(
@@ -442,13 +442,12 @@ void initState() {
                         StoragedataCart.addcart(text: json[indexx]);
                         //print(json[indexx]);
                         Fluttertoast.showToast(msg: "Add Successful",
-                          backgroundColor: Colors.blue,
+                          backgroundColor: Colors.green,
                           fontSize: 17,
-
                         );
                       }else{
                         Fluttertoast.showToast(msg: "Already in Cart",
-                          backgroundColor: Colors.blue,
+                          backgroundColor: Colors.amber,
                           fontSize: 17,
 
                         );
@@ -645,7 +644,13 @@ Widget buildMenu(BuildContext context) => SingleChildScrollView(
             height: 20,
           ),
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FavouritePage()),
+              );
+
+            },
             leading:
                 const Icon(Icons.favorite, size: 30.0, color: Colors.white),
             title: const Text(
