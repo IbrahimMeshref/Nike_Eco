@@ -18,6 +18,7 @@ import '../dblocallog/hivo.dart';
 import '../diohelper/urlapi.dart';
 import '../login/login_screen.dart';
 import '../profile/cubit/profile_cubit.dart';
+import '../profile/model/ProfileModel.dart';
 import '../profile/profil.dart';
 import 'LocalDB.dart';
 import 'itemscreen.dart';
@@ -59,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Color iconColor = Colors.grey;
 @override
 void initState() {
+  context.read<ProfileCubit>().profile();
   StoragedataCart.getcart();
     super.initState();
   }
@@ -91,6 +93,7 @@ void initState() {
                 ignoring: isOpened,
                 child: Scaffold(
                   appBar: buildAppBar(),
+                  backgroundColor:Color(0xffF7F7F9),
                   body: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -581,10 +584,21 @@ Widget buildMenu(BuildContext context) => SingleChildScrollView(
                   backgroundImage: NetworkImage(picture1),
                 ),
                 SizedBox(height: 20.0),
-                Text(
-                  "Hey, ${ ApiUrl.pro[0]['name']}",
+                BlocBuilder<ProfileCubit, ProfileState>(
+  builder: (context, state) {
+    if (state is ProfileLoading){
+      return  Center(
+          child: CircularProgressIndicator(
+            color: Colors.black,
+          ));
+    }
+    ProfileModel stucheck = context.read<ProfileCubit>().profileModel;
+    return Text(
+                  "Hey, ${stucheck.data?.name}",
                   style: TextStyle(color: Colors.white, fontSize: 17),
-                ),
+                );
+  },
+),
                 SizedBox(height: 50.0),
               ],
             ),

@@ -12,6 +12,7 @@ class DioHelper {
   static Map<String, dynamic> headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
+    "lang":"en",
     if (token.isNotEmpty) "Authorization": token,
   };
 
@@ -50,6 +51,15 @@ class DioHelper {
     return response;
   }
 
-/// Put
+  /// Put Data
+  Future<Response> putData({
+    required String path,
+    Map<String, dynamic>? body,
+    Map<String, dynamic>? queryParams,
+  }) async {
+    final response =
+    await dio!.put(path, data: body, queryParameters: queryParams);
+    return response;
+  }
 /// Patch
 }

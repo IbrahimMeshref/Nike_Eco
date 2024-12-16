@@ -1,6 +1,6 @@
 {
-    "name": "nike_eco",
-    "short_name": "nike_eco",
+    "name": "shoe",
+    "short_name": "shoe",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -38,37 +38,24 @@ class _OnbordingState extends State<Onbording> {
            children: [
              Stack(
                children: [
-                 Column(
-                   children: [
-                     SizedBox(width: width*0.45,height: height*0.14,),
-                     Container(
-                       child: Image.asset('assets/images/onbording/Highlight1.png',width: width*0.07,height: height*0.07,),
+                 Container(
+                   child: Image.asset('assets/images/onbording/Highlight1.png'),
+                   width: width*0.08,
+                   margin: EdgeInsets.only(top: height*0.15,left:width*0.19),
 
-                     ),
-                   ],
                  ),
                  Center(
-                   child: Column(
-                     children: [
-                       SizedBox(height: height*0.07,),
-                       Container(
-                         child: Image.asset('assets/images/onbording/page1name.png',width: width*0.37,height: height*0.37,),
-                         //width: width*0.3,
-                         //margin: EdgeInsets.only(top: height*0.24),
-                       ),
-                     ],
+                   child: Container(
+                     child: Image.asset('assets/images/onbording/page1name.png'),
+                     width: width*0.3,
+                     margin: EdgeInsets.only(top: height*0.28,left:0),
                    ),
                  ),
                  Center(
-                   child: Column(
-                     children: [
-                       Padding(padding: EdgeInsets.only(bottom: height-height)),
-                       Container(
-                           //width:width*0.5,
-                           //margin: EdgeInsets.only(top: height*0.18,left: width*0.02),
-                           child:Image.asset('assets/images/onbording/Wellcome.png',)
-                       ),
-                     ],
+                   child: Container(
+                       width:width*0.5,
+                       margin: EdgeInsets.only(top: height*0.18,left: 0),
+                       child:Image.asset('assets/images/onbording/Wellcome.png')
                    ),
                  ),
                  Container(

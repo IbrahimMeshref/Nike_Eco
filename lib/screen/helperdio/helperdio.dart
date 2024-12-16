@@ -9,6 +9,7 @@ class DioHelper {
   static Map<String, dynamic> headers = {
     "Accept": "application/json",
     "Content-Type": "application/json",
+    "lang":"en",
     if (token.isNotEmpty) "Authorization": token,
   };
 

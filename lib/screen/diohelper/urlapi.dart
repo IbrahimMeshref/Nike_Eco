@@ -4,6 +4,7 @@ class ApiUrl{
   static const register = "register";
   static const banners = "banners";
   static const profile="profile";
+  static const editprofile="update-profile";
   static String message='';
   static String messageup='';
   static List<Map<String,String>>pro=[

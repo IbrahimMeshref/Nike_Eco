@@ -1,7 +1,6 @@
-import 'package:SHOE/screen/diohelper/urlapi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../profile/cubit/profile_cubit.dart';
+import '../diohelper/urlapi.dart';
 import '../signup/signup.dart';
 import 'cubit/login_cubit.dart';
 class LoginScreen extends StatefulWidget {
@@ -170,8 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.blue,
-                          onPrimary: Colors.white,
+                          foregroundColor: Colors.white, backgroundColor: Colors.blue,
                           padding: EdgeInsets.symmetric(vertical: 16.0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
@@ -192,8 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          onPrimary: Colors.black,
+                          foregroundColor: Colors.black, backgroundColor: Colors.white,
                           padding: EdgeInsets.symmetric(vertical: 16.0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
@@ -393,11 +390,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 if(state is LoginWrong) Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    //Api
-                    Text(ApiUrl.message,style: TextStyle(
-                fontSize: 14,
-                 color: Color(0xFFFF0000),
-             ),
+                    Container(
+                      child: Text(
+                        ApiUrl.message,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFFFF0000),
+                        ),
+                        textAlign: TextAlign.start,
+                      ),
+                      width: width * 0.9,
+                      padding: EdgeInsets.only(bottom: height * 0.01),
                     ),
                     //text wihtout Api
                     /*Text("Incorrect Email or Password, please try again",style: TextStyle(
@@ -418,8 +421,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.white, backgroundColor: Colors.blue,
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),
@@ -440,8 +442,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    onPrimary: Colors.black,
+                    foregroundColor: Colors.black, backgroundColor: Colors.white,
                     padding: EdgeInsets.symmetric(vertical: 16.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8.0),

@@ -1,10 +1,4 @@
-import 'package:SHOE/screen/dblocalcart/hivo.dart';
-import 'package:SHOE/screen/dblocallog/hivo.dart';
-import 'package:SHOE/screen/diohelper/diohelper.dart';
-import 'package:SHOE/screen/login/cubit/login_cubit.dart';
-import 'package:SHOE/screen/profile/cubit/profile_cubit.dart';
-import 'package:SHOE/screen/signup/cubit/sign_up_cubit.dart';
-import 'package:SHOE/screen/splach/splach.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,8 +6,16 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:flutter_statusbarcolor_ns/flutter_statusbarcolor_ns.dart';
+import 'package:shoe/screen/dblocalcart/hivo.dart';
+import 'package:shoe/screen/dblocallog/hivo.dart';
+import 'package:shoe/screen/diohelper/diohelper.dart';
+import 'package:shoe/screen/editprofle/cubit/edit_profile_cubit.dart';
 
 import 'screen/home/homescreen.dart';
+import 'screen/login/cubit/login_cubit.dart';
+import 'screen/profile/cubit/profile_cubit.dart';
+import 'screen/signup/cubit/sign_up_cubit.dart';
+import 'screen/splach/splach.dart';
 
 Future<void> main() async {
 
@@ -46,6 +48,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ProfileCubit(),
+        ),
+        BlocProvider(
+          create: (context) => EditProfileCubit(),
         ),
 
       ],

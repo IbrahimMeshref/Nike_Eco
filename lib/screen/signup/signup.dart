@@ -246,8 +246,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.blue,
-                              onPrimary: Colors.white,
+                              foregroundColor: Colors.white, backgroundColor: Colors.blue,
                               padding: EdgeInsets.symmetric(vertical: 16.0),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
@@ -268,8 +267,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               // Implement Google sign-up functionality here
                             },
                             style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                              onPrimary: Colors.black,
+                              foregroundColor: Colors.black, backgroundColor: Colors.white,
                               padding: EdgeInsets.symmetric(vertical: 16.0),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
@@ -572,8 +570,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             );
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.blue,
-                        onPrimary: Colors.white,
+                        foregroundColor: Colors.white, backgroundColor: Colors.blue,
                         padding: EdgeInsets.symmetric(vertical: 16.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
@@ -594,8 +591,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         // Implement Google sign-up functionality here
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.white,
-                        onPrimary: Colors.black,
+                        foregroundColor: Colors.black, backgroundColor: Colors.white,
                         padding: EdgeInsets.symmetric(vertical: 16.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
